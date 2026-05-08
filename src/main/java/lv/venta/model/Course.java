@@ -1,5 +1,7 @@
 package lv.venta.model;
 
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -36,6 +39,10 @@ public class Course {
 	@ManyToOne// many courses have linked to one professor
 	@JoinColumn(name = "Pid")// use professor id column title
 	private Professor professor;
+	
+	
+	@OneToMany(mappedBy = "Course")
+	private Collection<Grade>grades;
 
 
 	public String getTitle() {
